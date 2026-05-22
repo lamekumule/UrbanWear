@@ -1,8 +1,503 @@
-<!DCTYPE html>
-<html lang=ën">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset=ÜTF-8">
-	<title>WMD Assignment</title>
-	<link rel="stylesheet"  href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Wear Clothing Co. — City. Mapped. Worn.</title>
+  <meta name="description" content="Urban Wear Clothing Co. — luxury streetwear inspired by the city. City-map prints, premium fabrics, and architectural design.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 65% 40%, rgba(26,43,74,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(201,169,110,0.08) 0%, transparent 60%);
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      opacity: 0.35;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 72px 100px;
+      max-width: 1200px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(56px, 9vw, 130px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 36px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--light-gray);
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 48px;
+      right: 72px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--gold);
+      overflow: hidden;
+      height: 42px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-track span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding: 0 40px;
+    }
+
+    .marquee-track span.dot::after {
+      content: ' ◆ ';
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 120px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .intro-text h2 {
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 300;
+      color: var(--white);
+      margin: 16px 0 28px;
+      line-height: 1.15;
+    }
+
+    .intro-text p {
+      font-family: var(--font-display);
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .intro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 48px;
+      border-top: 1px solid var(--mid);
+      padding-top: 32px;
+    }
+
+    .stat {
+      padding-right: 24px;
+      border-right: 1px solid var(--mid);
+    }
+    .stat:last-child { border-right: none; padding-left: 24px; padding-right: 0; }
+    .stat:nth-child(2) { padding: 0 24px; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .intro-visual {
+      position: relative;
+    }
+
+    .intro-visual img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .intro-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,169,110,0.2);
+      pointer-events: none;
+    }
+
+    /* ── CATEGORIES STRIP ── */
+    .categories {
+      padding: 0 72px 120px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .category-card {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .category-card:hover img { transform: scale(1.06); }
+
+    .category-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 40%, rgba(0,0,0,0.75) 100%);
+    }
+
+    .category-label {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      z-index: 2;
+    }
+
+    .category-label h3 {
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--white);
+      margin: 6px 0;
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      margin: 0 72px 80px;
+      background: var(--near-black);
+      border: 1px solid rgba(201,169,110,0.15);
+      padding: 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .newsletter h2 {
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 300;
+      margin: 12px 0 16px;
+    }
+
+    .newsletter p {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--mid);
+      color: var(--white);
+      font-size: 14px;
+      padding: 14px 0;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .input-group input:focus { border-color: var(--gold); }
+
+    .input-group label {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      pointer-events: none;
+      transition: all var(--transition-fast);
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -6px;
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1200px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .product-card.wide { grid-column: span 1; }
+      .product-card.wide .product-card-img { aspect-ratio: 3/4; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content, .featured, .categories { padding-left: 32px; padding-right: 32px; }
+      .intro { padding: 80px 32px; grid-template-columns: 1fr; }
+      .newsletter { margin: 0 32px 80px; padding: 48px; grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { padding: 0 24px 80px; }
+      .hero h1 { font-size: 52px; }
+      .hero-scroll { display: none; }
+      .featured { padding: 0 16px 80px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .categories { grid-template-columns: 1fr; padding: 0 16px 80px; }
+      .newsletter { margin: 0 16px 60px; padding: 36px 24px; gap: 36px; }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
+<!-- ── Navigation ── -->
+ <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="aboutus.html">About</a>
+    <a href="contact.html">Contact</a>
+ </nav>
+</nav>
+
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" src="images/citylife-logo.jpeg" alt="Urban Wear Campaign"/>
+  </div>
+  <div class="hero-content">
+    <h1>City.<br><em>Mapped.</em><br>Worn.</h1>
+    <p class="hero-sub">Luxury streetwear born from the architecture of the city. Every stitch carries the map of where you belong.</p>
+    <div class="hero-cta">
+      <a href="products.html" class="btn btn-gold">Shop Now</a>
+      <a href="about.html" class="btn btn-outline">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="dot">Urban Wear Clothing Co</span>
+    <span class="dot">City Map Collection</span>
+    <span class="dot">Premium Streetwear</span>
+    <span class="dot">City Life</span>
+    <span class="dot">New Season</span>
+    <span class="dot">Urban Wear Clothing Co</span>
+    <span class="dot">City Map Collection</span>
+    <span class="dot">Premium Streetwear</span>
+    <span class="dot">City Life</span>
+    <span class="dot">New Season</span>
+    <span class="dot">Urban Wear Clothing Co</span>
+    <span class="dot">City Map Collection</span>
+    <span class="dot">Premium Streetwear</span>
+    <span class="dot">City Life</span>
+    <span class="dot">New Season</span>
+  </div>
+</div>
+
+<!-- ── INTRO ── -->
+<section class="intro page-content">
+  <div class="intro-text">
+    <p class="section-label">Our Philosophy</p>
+    <h2>Wear the city you love.</h2>
+    <p>Urban Wear Clothing Co. translates the raw energy of the city into wearable art. From hand-printed map jackets to architectural accessories, every piece is a declaration of belonging.</p>
+    <a href="aboutus.html" class="btn btn-outline">Read Our Story</a>
+    <div class="intro-stats">
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Collections</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Premium Fabric</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">City. Endless Style.</div>
+      </div>
+    </div>
+  </div>
+  <div class="intro-visual">
+    <img src="images/jacket-back.jpeg" alt="City Varsity Jacket back view"/>
+  </div>
+</section>
+
+<!-- ── CATEGORIES ── -->
+<section class="categories">
+  <a href="products.html?filter=mens" class="category-card">
+    <img src="images/jacket-front.jpeg" alt="Men's Collection"/>
+    <div class="category-label">
+      <p class="section-label">Explore</p>
+      <h3>Men's</h3>
+      <div class="gold-line left"></div>
+    </div>
+  </a>
+  <a href="products.html?filter=womens" class="category-card">
+    <img src="images/ladies-jacket_front.jpeg" alt="Women's Collection"/>
+    <div class="category-label">
+      <p class="section-label">Explore</p>
+      <h3>Women's</h3>
+      <div class="gold-line left"></div>
+    </div>
+  </a>
+  <a href="products.html?filter=bags" class="category-card">
+    <img src="images/cross-bag.jpeg" alt="Bags & Accessories"/>
+    <div class="category-label">
+      <p class="section-label">Explore</p>
+      <h3>Accessories</h3>
+      <div class="gold-line left"></div>
+    </div>
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Urban Wear Clothing Co. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
